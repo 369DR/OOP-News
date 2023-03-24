@@ -1,10 +1,15 @@
 from bs4 import BeautifulSoup
 import requests
+"""
+method = Fungsi
+Field / Atrribute = variable
+"""
 
-class mostpopulerkompas:
-    def __init__(self):
+class news:
+    def __init__(self, url):
         self.description = "to get news in Indonesia"
         self.result = None
+        self.url = url
 
     def data_extraction(self):
         """
@@ -33,7 +38,7 @@ class mostpopulerkompas:
         :return:
         """
         try:
-            content = requests.get("https://www.kompas.com/")
+            content = requests.get(self.url)
         except Exception:
             return None
         if content.status_code == 200:
@@ -113,8 +118,12 @@ class mostpopulerkompas:
         self.data_show()
 
 if __name__ == '__main__':
-    news_in_Indonesia = mostpopulerkompas()
-    print("Description package", news_in_Indonesia.description)
-    news_in_Indonesia.run()
+    news_in_kompas = news("https://www.kompas.com")
+    print("Description class news", news_in_kompas.description)
+    news_in_kompas.run()
+
+    news_in_detik = news("https://www.kompas.com")
+    print("\nDescription class news", news_in_detik.description)
+    news_in_detik.run()
     # news_in_Indonesia.data_extraction()
     # news_in_Indonesia.data_show()
