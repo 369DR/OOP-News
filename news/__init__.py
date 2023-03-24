@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-description = "to get news"
+description = "to get news in Indonesia"
 
 def data_extraction():
     """
@@ -106,6 +106,6 @@ def data_show(result):
     print(f"10. {result['J']}")
 
 if __name__ == '__main__':
-        print("main application")
-        result = data_extraction()
-        data_show(result)
+    print("Description package", description)
+    result = data_extraction()
+    data_show(result)
