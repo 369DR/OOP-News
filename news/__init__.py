@@ -3,13 +3,41 @@ import requests
 """
 method = Fungsi
 Field / Atrribute = variable
+constructor = method yang dipanggil pertama kali saat object diciptakan.Gunakan untuk mendeklarasikan semua field
+              pada class ini.
 """
 
 class news:
-    def __init__(self, url):
-        self.description = "to get news in Indonesia"
+    def __init__(self, url, description):
+        self.description = description
         self.result = None
         self.url = url
+
+    def description_show(self):
+        print(self.description)
+
+    def data_extraction(self):
+        print("data_extraction not yet implement")
+
+    def data_show(self):
+        print("data_show not yet implement")
+
+    def run(self):
+        self.data_extraction()
+        self.data_show()
+
+class mostpopulernewsdetik(news):
+    def __init__(self, url):
+        super(mostpopulernewsdetik, self).__init__(url, "NOT YET IMPLEMENTED, "
+                                                       "but should to get most populer news from detik.com")
+
+    def description_show(self):
+        print(f"UNDER CONSTRUCTION {self.description}")
+
+class mostpopulernewskompas(news):
+    def __init__(self, url):
+        super(mostpopulernewskompas, self).__init__(url, "To get most populer news from kompas.com")
+
 
     def data_extraction(self):
         """
@@ -96,7 +124,6 @@ class news:
         else:
             return None
 
-
     def data_show(self):
         if self.result is None:
             print("Couldn't find the Most Popular News data from the Kompas.com site")
@@ -113,17 +140,24 @@ class news:
         print(f"9. {self.result['I']}")
         print(f"10. {self.result['J']}")
 
-    def run(self):
-        self.data_extraction()
-        self.data_show()
+
+
 
 if __name__ == '__main__':
-    news_in_kompas = news("https://www.kompas.com")
-    print("Description class news", news_in_kompas.description)
+    news_in_kompas = mostpopulernewskompas("https://www.kompas.com")
+    news_in_kompas.description_show()
     news_in_kompas.run()
 
-    news_in_detik = news("https://www.kompas.com")
-    print("\nDescription class news", news_in_detik.description)
+    news_in_detik = mostpopulernewsdetik("NOT YET")
+    news_in_detik.description_show()
     news_in_detik.run()
+
+    daftar_news = [news_in_kompas, news_in_detik]
+    print("\nAll News")
+    for news in daftar_news:
+        news.description_show()
+    # news_in_detik = mostpopulernewskompas("https://www.kompas.com")
+    # print("\nDescription class news", news_in_detik.description)
+    # news_in_detik.run()
     # news_in_Indonesia.data_extraction()
     # news_in_Indonesia.data_show()
